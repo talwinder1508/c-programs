@@ -1,0 +1,315 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StudentRecord
+{
+    class Program
+    {
+
+        public class Students
+        {
+            private String fname;
+            private String lname;
+            private int numofcourses;
+            private int credithours;
+
+            public String getFname()
+            {
+                return fname;
+            }
+
+            public Students(String a, String b, int x, int y)
+            {
+                fname = a;
+                lname = b;
+                numofcourses = x;
+                credithours = y;
+            }
+            public void DisplayStudentInformation(int x)
+            {
+                Console.WriteLine(fname + " " + lname);
+            }
+
+            public void EditStudentInformation()
+            {
+                Console.WriteLine("Enter first name for new student");
+                String f1 = Console.ReadLine();
+                while (f1.Any(char.IsDigit))
+                {
+                    Console.WriteLine("Name can not contain digits. Try Again");
+                    f1 = Console.ReadLine();
+                }
+                fname = f1;
+
+                Console.WriteLine("Enter last name for new student");
+                String l1 = Console.ReadLine();
+                while (l1.Any(char.IsDigit))
+                {
+                    Console.WriteLine("Name can not contain digits. Try Again");
+                    l1 = Console.ReadLine();
+                }
+                lname = l1;
+
+
+                Console.WriteLine("Enter number of courses for new student");
+            CC:
+                int c1 = 0;
+                String cou = Console.ReadLine();
+                while (!Int32.TryParse(cou, out c1))
+                {
+                    Console.WriteLine("Please enter an integer only");
+
+                    cou = Console.ReadLine();
+                }
+                if (c1 > 0 && c1 < 11)
+                {
+                    numofcourses = c1;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter integer from 0 to 10");
+                    goto CC;
+                }
+
+                Console.WriteLine("Enter credit hours for new student");
+            DD:
+                int cr1 = 0;
+                String cre = Console.ReadLine();
+                while (!Int32.TryParse(cre, out cr1))
+                {
+                    Console.WriteLine("Please enter an integer only");
+                    cre = Console.ReadLine();
+                }
+                if (cr1 > 0)
+                {
+                    credithours = cr1;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter non negative integer only");
+                    goto DD;
+                }
+
+            }
+
+            public void AddNewStudent()
+            {
+                Console.WriteLine("Enter first name");
+                String f1 = Console.ReadLine();
+                while (f1.Any(char.IsDigit))
+                {
+                    Console.WriteLine("Name can not contain digits. Try Again");
+                    f1 = Console.ReadLine();
+                }
+                fname = f1;
+
+                Console.WriteLine("Enter last name");
+                String l1 = Console.ReadLine();
+                while (l1.Any(char.IsDigit))
+                {
+                    Console.WriteLine("Name can not contain digits. Try Again");
+                    l1 = Console.ReadLine();
+                }
+                lname = l1;
+
+
+                Console.WriteLine("Enter number of courses");
+            AA:
+                int c1 = 0;
+                String cou = Console.ReadLine();
+                while (!Int32.TryParse(cou, out c1))
+                {
+                    Console.WriteLine("Please enter an integer only");
+
+                    cou = Console.ReadLine();
+                }
+                if (c1 > 0 && c1 < 11)
+                {
+                    numofcourses = c1;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter integer from 0 to 10");
+                    goto AA;
+                }
+
+
+                Console.WriteLine("Enter credit hours");
+            BB:
+                int cr1 = 0;
+                String cre = Console.ReadLine();
+                while (!Int32.TryParse(cre, out cr1))
+                {
+                    Console.WriteLine("Please enter an integer only");
+                    cre = Console.ReadLine();
+                }
+                if (cr1 > 0)
+                {
+                    credithours = cr1;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter non negative integer only");
+                    goto BB;
+                }
+
+            }
+
+        }
+
+        static void Main(string[] args)
+        {
+            int input = 0;
+
+            Students[] studentArray = new Students[4];
+
+            for (int x = 0; x < 4; x++)
+            {
+                studentArray[x] = new Students(null, null, 0, 0);
+            }
+            while (true)
+            {
+
+                Console.WriteLine("Welcome to Conestoga Student Portal");
+
+                Console.WriteLine("A. Display a list of existing students");
+                Console.WriteLine("B. Add a new student record");
+                Console.WriteLine("C. Edit an existing student record");
+                Console.WriteLine("D. Exit the program");
+
+                String option = Console.ReadLine();
+
+                switch (option)
+                {
+                    case "A":
+
+                        int i = 10;
+                        if (studentArray[0].getFname() == null)
+                        {
+                            Console.WriteLine("Student Record empty. Nothing to display. Lets setup student database");
+                        }
+                        else if (studentArray[1].getFname() == null)
+                        {
+                            i = 1;
+                        }
+                        else if (studentArray[2].getFname() == null)
+                        {
+                            i = 2;
+                        }
+                        else if (studentArray[3].getFname() == null)
+                        {
+                            i = 3;
+                        }
+                        else
+                        {
+                            i = 4;
+                        }
+
+                        if (i == 10)
+                        {
+
+                        }
+                        else
+                        {
+                            for (int k = 0; k < i; k++)
+                            {
+                                studentArray[k].DisplayStudentInformation(k);
+                            }
+                        }
+
+                        break;
+
+
+                    case "B":
+
+                        int s = 0;
+                        if (studentArray[0].getFname() == null)
+                        {
+                            s = 0;
+                            studentArray[s].AddNewStudent();
+                        }
+                        else if (studentArray[1].getFname() == null)
+                        {
+                            s = 1;
+                            studentArray[s].AddNewStudent();
+                        }
+                        else if (studentArray[2].getFname() == null)
+                        {
+                            s = 2;
+                            studentArray[s].AddNewStudent();
+                        }
+                        else if (studentArray[3].getFname() == null)
+                        {
+                            s = 3;
+                            studentArray[s].AddNewStudent();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Student database full");
+                        }
+
+
+                        break;
+
+
+                    case "C":
+                        Console.WriteLine("Enter the name of student whose info you want to change :");
+                        String str = Console.ReadLine();
+
+                        int index = 10;
+
+
+                        if (String.Equals(str, studentArray[0].getFname()))
+                        {
+                            index = 0;
+                        }
+                        else if (String.Equals(str, studentArray[1].getFname()))
+                        {
+                            index = 1;
+                        }
+                        else if (String.Equals(str, studentArray[2].getFname()))
+                        {
+                            index = 2;
+                        }
+                        else if (String.Equals(str, studentArray[3].getFname()))
+                        {
+                            index = 3;
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("No such first name found");
+                        }
+                        if (index == 10)
+                        {
+
+                        }
+                        else
+                        {
+                            studentArray[index].EditStudentInformation();
+                        }
+                        break;
+
+
+                    case "D":
+                        System.Environment.Exit(1);
+                        break;
+
+                    default:
+                        Console.WriteLine("Sorry, invalid selection");
+                        break;
+                }
+
+                input++;
+                if (input < 50)
+                    continue;
+                else
+                    break;
+
+            }
+        }
+    }
+}
